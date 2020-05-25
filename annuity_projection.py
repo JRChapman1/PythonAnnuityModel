@@ -4,7 +4,7 @@ import pathlib
 
 
 
-inputs = pd.read_csv(pathlib.Path().absolute() + '/policy data/annuity_policy_data.csv')
+inputs = pd.read_csv(str(pathlib.Path().absolute()) + '/policy data/annuity_policy_data.csv')
 
 for index, row in inputs.iterrows():
     annuity = ImmediateAnnuity(row['Amount of annuity'],
