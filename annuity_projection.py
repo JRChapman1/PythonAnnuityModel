@@ -1,9 +1,10 @@
 from annuity_model import *
 import pandas as pd
+import pathlib
 
 
 
-inputs = pd.read_csv('/Users/joshchapman/PycharmProjects/IC/venv/policy data/annuity_policy_data.csv')
+inputs = pd.read_csv(pathlib.Path().absolute() + '/policy data/annuity_policy_data.csv')
 
 for index, row in inputs.iterrows():
     annuity = ImmediateAnnuity(row['Amount of annuity'],
