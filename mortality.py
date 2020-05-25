@@ -1,5 +1,6 @@
 import pandas as pd
 from enum import Enum
+import pathlib
 
 
 class ProductTypes(Enum):
@@ -10,7 +11,7 @@ class ProductTypes(Enum):
 class Mortality(object):
 
     def __init__(self, mortality_file_name):
-        self.curve = pd.read_csv('/Users/joshchapman/PycharmProjects/IC/venv/assumptions/' + str(mortality_file_name) + '.csv', index_col=[0,1,2])
+        self.curve = pd.read_csv(str(pathlib.Path().absolute()) + '/assumptions/' + str(mortality_file_name) + '.csv', index_col=[0,1,2])
 
     # Returns mortality curve value for given lookup values
     def value(self, age, sex, product, duration):
