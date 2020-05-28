@@ -5,6 +5,10 @@ class CurveTypes(Enum):
     Flat = 1
     KVPair = 2
 
+class CurveUndefinedError(Exception):
+    pass
+
+
 class Curve(object):
     def __init__(self, curve_type, curve_value):
         if curve_type == CurveTypes.Flat:
@@ -13,4 +17,7 @@ class Curve(object):
             print('unsupported curve type')
 
     def value(self, lookup):
-        return self.curve[lookup]
+        try:
+            return self.curve[lookup]
+        except IndexError:
+            raise CurveUndefinedError("Curve not defined at date.")
