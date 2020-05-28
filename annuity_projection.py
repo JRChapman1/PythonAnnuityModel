@@ -1,10 +1,11 @@
+import pathlib
 from annuity_model import *
 import pandas as pd
-import pathlib
+
 
 
 inputs = pd.read_csv(str(pathlib.Path().absolute()) + '/policy data/annuity_policy_data_single_policy.csv')
-valuation_date = '31/12/2020'
+valuation_date = '01/12/2018'
 output_location = str(pathlib.Path().absolute()) + '/output'
 
 output = pd.DataFrame(columns=['Time Step', 'Projection Date', 'Subtotal Key', 'PH Age', 'Qx', 'Qxpm', 'Prob IF',
@@ -20,7 +21,7 @@ for index, row in inputs.iterrows():
     output = output.append(annuity.project_value(valuation_date))
 
 if output_location != '':
-    output.to_csv(output_location + '/foo.csv')
+    output.to_csv(output_location + '/1963.csv')
 
 print(output)
 

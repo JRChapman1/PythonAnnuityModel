@@ -13,7 +13,7 @@ class ImmediateAnnuity(object):
         self.first_benefit_date = datetime.strptime(first_benefit_date, '%d/%m/%Y')
         self.annuitant_sex = annuitant_sex
         self.mortality = Mortality(base_mortality_file_name)
-        self.risk_free_rate = Curve(CurveTypes.Flat, 0.0008)
+        self.risk_free_rate = Curve('flat_rfr_1pc_pa_effective_YE18')
 
     # Calculates the present value of the annuity at the time of purchase
     def project_value(self, valuation_date, projection_points=700):
