@@ -41,7 +41,7 @@ if output_location != '':
     output.to_csv(output_location + '/grand_totals_test.csv')
 
 print('\n--------------------------------------------------------------------------------')
-print('EPV of Liabilities at valuation date ({}): £{:,.2f}'.format(valuation_date, output['Benefit EPV'].sum(), 2))
+print('EPV of Liabilities at valuation date ({}): £{:,.2f}'.format(valuation_date, grand_totals['Benefit EPV'].sum(), 2))
 print('\n--------------------------------------------------------------------------------')
 
 
