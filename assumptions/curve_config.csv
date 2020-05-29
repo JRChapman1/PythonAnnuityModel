@@ -1,2 +1,5 @@
 Curve Name,Curve Type,Effective Date,Curve Value
 flat_rfr_1pc_pa_effective_YE18,Flat,31/12/2018,0.000829538
+flat_inf_1.5pc_pa_effective_YE18,Flat,31/12/2018,0.001241488
+1pc_400points_1.5pc_320points,KVPair,31/12/2018,1pc_400points_1.5pc_320points
+flat_rfr_1.5pc_pa_effective_YE18,Flat,31/12/2018,0.001241488

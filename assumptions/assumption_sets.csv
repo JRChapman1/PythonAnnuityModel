@@ -1,0 +1,4 @@
+Assumption Set ID,Mortality Sensitivity,Curve Sensitivity
+10001,base_mortality,simple_curve_setup_YE18
+10002,base_mortality,step_interest_curve_test
+10003,base_mortality,simple_curve_setup2_YE18

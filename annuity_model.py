@@ -3,17 +3,24 @@ from curve import *
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 import pandas as pd
+import globals
 
 
 class ImmediateAnnuity(object):
-    def __init__(self, policy_id, amount_of_annuity, date_of_birth, annuitant_sex, first_benefit_date, base_mortality_file_name):
+    def __init__(self, policy_id, amount_of_annuity, date_of_birth, annuitant_sex, first_benefit_date, assumption_set_id):
+        # TODO: Might this be better if contained in a dictionary?
+        assumptions = pd.read_csv(str(pathlib.Path().absolute()) + '/assumptions/assumption_sets.csv', index_col='Assumption Set ID')
+        curve_basis = pd.read_csv(str(pathlib.Path().absolute()) + '/assumptions/curve_basis.csv', index_col=['Curve Sensitivity', 'Curve Group'])
+        mortality_sensitivity = assumptions.loc[assumption_set_id]['Mortality Sensitivity']
+        curve_sensitivity = assumptions.loc[assumption_set_id]['Curve Sensitivity']
         self.policy_id = policy_id
         self.amount_of_annuity = amount_of_annuity
         self.date_of_birth = datetime.strptime(date_of_birth, '%d/%m/%Y')
         self.first_benefit_date = datetime.strptime(first_benefit_date, '%d/%m/%Y')
         self.annuitant_sex = annuitant_sex
-        self.mortality = Mortality(base_mortality_file_name)
-        self.risk_free_rate = Curve('flat_rfr_1pc_pa_effective_YE18')
+        self.mortality = Mortality(mortality_sensitivity)
+        self.risk_free_rate = Curve(curve_basis.loc[curve_sensitivity, 'interest_rate']['Curve Instance'])
+        self.inflation_rate = Curve(curve_basis.loc[curve_sensitivity, 'inflation_rate']['Curve Instance'])
 
     # Calculates the present value of the annuity at the time of purchase
     def project_value(self, valuation_date, projection_points=700):
